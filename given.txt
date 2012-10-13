@@ -1,0 +1,39 @@
+Phonebook is a single-user (no login) application for keeping track of the people you work with. 
+
+Here are the user stories:
+
+
+Create Contact: I want to create new Contacts and give them a first name, last name, email address, and phone number. 
+
+Edit Contact: I want to change any of the details of any of my existing contacts.
+
+List Contacts: I want to view all of my contacts in a paginated list.
+
+View Contact: I want to view all the details of one of my contacts.
+
+Contact Picture: I want to upload a single picture for each contact, and view that picture on the contact's detail page.
+
+Thumbnail: I want to see picture thumbnails on the contact list page. 
+
+Email Validation: I want to be prevented from creating or saving a contact with an invalidly-formatted email address.
+
+Phone Validation: I want to be prevented from creating or saving a contact if their phone number is not in the format 44 xxx xxxxxx
+
+Create Company: I want to create Companies (name, address) so that I can keep track of who my contacts work for. 
+
+Contact In Company: I want to assign my contacts to companies.
+
+List Companies: I want to view a list of all Companies 
+
+View Company: I want to view a single company's details, including all of the contacts in that company 
+
+Search Contacts: I want to find contacts by searching on their first or last name.
+
+Twitter Feed: I want to enter my contacts' twitter handles, then see their latest tweets
+
+Realtime: If any details are changed by my secretary (who's using the same app on another computer), I want to see the updates immediately without reloading the page
+
+NOTES:
+
+* Use tdd/bdd
+* Deploy to Heroku after each story
