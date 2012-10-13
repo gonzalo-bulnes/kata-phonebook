@@ -17,16 +17,6 @@ I use [RVM][RVM] to keep _kata_ environments separated from each others. In my o
     # Keep the file ignored by version control
     echo ".rvmrc" >> .gitignore
 
-### Heroku
-
-Heroku mades easy deploying through a single `git push heroku master`.
-
-    cd kata-phonebook
-    heroku create
-    Creating some-funny-name-2564... done, stack is cedar
-    http://some-funny-name-2564.herokuapp.com/ | git@heroku.com:some-funny-name-2564.git
-    Git remote heroku added
-
 ### Rails
 
 Provided you install Rails from the `kata-phonebook` directory, it will be added to your _gemset_ without messing your system Ruby installation.
@@ -55,3 +45,22 @@ Let's now create a new app. Since we will use RSpec for testing, we use the `--s
 ### Bundler
 
 Bundler is installed automatically by the `rails` command.
+
+### Heroku
+
+Heroku mades easy deploying through a single `git push heroku master`.
+
+    cd kata-phonebook
+    heroku create
+    Creating some-funny-name-2564... done, stack is cedar
+    http://some-funny-name-2564.herokuapp.com/ | git@heroku.com:some-funny-name-2564.git
+    Git remote heroku added
+
+In order to allow Heroku to use PostgreSQL in the production environment, modify the section related to SQLite in the `Gemfile`.
+
+    # Gems used only for development and test
+    # Insulating 'sqlite3' from :production is required
+    # to allow deployment to Heroku
+    group :development, :test do
+      gem 'sqlite3'
+    end
