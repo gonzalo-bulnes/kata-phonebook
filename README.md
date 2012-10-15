@@ -100,3 +100,59 @@ Then run:
 
     bundle install
     rails generate cucumber:install
+
+### Optional: Speed Tests with Spork
+
+To avoid loading the test environment for each test, using Spork is recomended. It can be used in combination with Guard, which runs automatically the test suite when files are modified.
+
+    # Gemfile
+
+    group :development do
+      gem 'spork'
+    end
+
+Then run:
+
+    spork --bootstrap
+    # Use `bundle exec sprok --bootstap` with RVM older than 1.11
+
+Finally, edit the `spec/spec_helper.rb`. The file is self-documented. (You can safely put all the commands into the `Spork.prefork` block.)
+
+You can now run Spork in a new terminal:
+
+    spork
+    # Use `bundle exec spork` with RVM older than 1.11
+    Using RSpec...
+
+#### Integrate RSpec with Spork
+
+When you run `spork`, a test environment is created for the RSpec specs to be ran. To ensure RSpec makes use of that environment, add the `--drb` option to the `.rspec` file.
+
+#### Integrate Cucumber with Spork
+
+The `cucumber-rails` gem installation script provides an option to integrate Cucumber with Spork. (See `rails generate cucumber:install --help`.)
+
+    rails generate cucumber:install --spork
+
+    # Add the `--drb` option to some commands, you should allow overwritting.
+    conflict  config/cucumber.yml
+    Overwrite /path/to/kata-phonebook/config/cucumber.yml? (enter "h" for help) [Ynaqdh] y
+            force  config/cucumber.yml
+        identical  script/cucumber
+            chmod  script/cucumber
+            exist  features/step_definitions
+            exist  features/support
+
+    # Modify the Cucumber enviroment to use Spork, you should allow overwritting.
+         conflict  features/support/env.rb
+    Overwrite /path/to/kata-phonebook/features/support/env.rb? (enter "h" for help) [Ynaqdh] y
+           force  features/support/env.rb
+           exist  lib/tasks
+        identical  lib/tasks/cucumber.rake
+
+The environment used to run Cucumber features is different from the one used by RSpec specs. Open a new terminal and run:
+
+    spork cucumber
+    Using Cucumber...
+
+You can run both Cucumber and RSpec with a single command: `rake`.

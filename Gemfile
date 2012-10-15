@@ -13,6 +13,10 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+group :development do
+  gem 'spork'
+end
+
 group :test do
   gem 'capybara'
   gem 'cucumber-rails', :require => false
