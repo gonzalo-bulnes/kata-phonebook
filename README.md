@@ -107,7 +107,7 @@ To avoid loading the test environment for each test, using Spork is recomended. 
 
     # Gemfile
 
-    group :development do
+    group :test do
       gem 'spork'
     end
 
@@ -156,3 +156,73 @@ The environment used to run Cucumber features is different from the one used by 
     Using Cucumber...
 
 You can run both Cucumber and RSpec with a single command: `rake`.
+
+### Optional: Automate Tests with Guard
+
+The `guard-spork` gem provides Guard-Spork integration. Add it to the `Gemfile` with the gems that provide notifications for your operating system:
+
+    group :test do
+      gem 'guard-spork'
+
+      # Notifications gems to be used with Guard
+      # See http://ruby.railstutorial.org/chapters/static-pages#sec-guard
+
+      # Notifications gems on Linux
+      gem 'rb-inotify', '0.8.8'
+      gem 'libnotify', '0.5.9' 
+
+      # Notifications gems on Macintosh OS X
+      #gem 'rb-fsevent', '0.9.1', :require => false
+      #gem 'growl', '1.0.3' 
+
+      # Notifications gems on Windows
+      #gem 'rb-fchange', '0.0.5'
+      #gem 'rb-notifu', '0.0.4'
+      #gem 'win32console', '1.3.0'
+    end
+
+Then run:
+
+    bundle install
+    guard init spork
+
+Finally, you can now start Guard which will automatically launch Spork (and you can close the terminals in which you used to launch Spork manually!):
+
+    guard --no-bundler-warning
+    # Use `bundle exec guard` with RVM older than 1.11
+
+    Guard uses NotifySend to send notifications.
+    Guard is now watching at '/path/to/kata-phonebook'
+    Starting Spork for RSpec, Cucumber
+    Using RSpec
+    Preloading Rails environment
+    Using Cucumber
+    Preloading Rails environment
+    Loading Spork.prefork block...
+    Loading Spork.prefork block...
+    Spork is ready and listening on 8989!
+    Spork is ready and listening on 8990!
+    Spork server for RSpec, Cucumber successfully started
+    > 
+
+#### Note on the Guardfile
+
+The generated `Guardfile` is just fine to ensure RSpec and Cucumber will use the Spork server because both are already configured to use their `--drb` options. (Specifically, it is **not** necessary to repeat that in this `Guardfile` as described in the Guard `README`.)
+
+    # A Guardfile
+    # More info at https://github.com/guard/guard#readme
+
+    guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
+      watch('config/application.rb')
+      watch('config/environment.rb')
+      watch('config/environments/test.rb')
+      watch(%r{^config/initializers/.+\.rb$})
+      watch('Gemfile')
+      watch('Gemfile.lock')
+      watch('spec/spec_helper.rb') { :rspec }
+      watch('test/test_helper.rb') { :test_unit }
+      watch(%r{features/support/}) { :cucumber }
+    end
+
+    # It should not be necessary to pass the `--drb` option to RSpec and Cucumber here
+    # since it is already passed through `.rspec` and `config/cucumber.yaml`.

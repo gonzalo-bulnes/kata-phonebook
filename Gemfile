@@ -13,14 +13,28 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-group :development do
-  gem 'spork'
-end
-
 group :test do
   gem 'capybara'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'guard-spork'
+  gem 'spork'
+
+  # Notifications gems to be used with Guard
+  # See http://ruby.railstutorial.org/chapters/static-pages#sec-guard
+
+  # Notifications gems on Linux
+  gem 'rb-inotify', '0.8.8'
+  gem 'libnotify', '0.5.9' 
+
+  # Notifications gems on Macintosh OS X
+  #gem 'rb-fsevent', '0.9.1', :require => false
+  #gem 'growl', '1.0.3' 
+
+  # Notifications gems on Windows
+  #gem 'rb-fchange', '0.0.5'
+  #gem 'rb-notifu', '0.0.4'
+  #gem 'win32console', '1.3.0'
 end
 
 # Gems used only for assets and not required
