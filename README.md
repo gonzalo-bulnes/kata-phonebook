@@ -64,3 +64,24 @@ In order to allow Heroku to use PostgreSQL in the production environment, modify
     group :development, :test do
       gem 'sqlite3'
     end
+
+Behaviour-Driven Development Tools Setup
+----------------------------------------
+
+### RSpec
+
+In order to write integration tests, add RSpec and Capybara to the `Gemfile`:
+
+    group :development, :test do
+      gem 'rspec-rails'
+    end
+
+    # Capybara is not required but improves the specs readability.
+    group :test do
+      gem 'capybara'
+    end
+
+Then run:
+
+    bundle install
+    rails generate rspec:install

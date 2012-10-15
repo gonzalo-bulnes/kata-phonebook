@@ -9,7 +9,12 @@ gem 'rails', '3.2.8'
 # Insulating 'sqlite3' from :production is required
 # to allow deployment to Heroku
 group :development, :test do
+  gem 'rspec-rails'
   gem 'sqlite3'
+end
+
+group :test do
+  gem 'capybara'
 end
 
 # Gems used only for assets and not required
