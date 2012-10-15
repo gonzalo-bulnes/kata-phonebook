@@ -85,3 +85,18 @@ Then run:
 
     bundle install
     rails generate rspec:install
+
+### Cucumber
+
+In order to describe features, add Cucumber to the `Gemfile`:
+
+    group :test do
+      gem 'cucumber-rails', :require => false
+      # database_cleaner is not required, but highly recommended
+      gem 'database_cleaner'
+    end
+
+Then run:
+
+    bundle install
+    rails generate cucumber:install
