@@ -29,7 +29,7 @@ Feature: Manage Contacts
     And I should see "Contact was successfully updated."
 
   Scenario: Delete Contact
-    Given I have one contact named Charles
-    And I am on the list of contacts
-    When I follow "Delete Contact"
+    Given Charles is a contact
+    When I go to the list of contacts
+    And I follow "Destroy"
     Then I should not see "Charles"

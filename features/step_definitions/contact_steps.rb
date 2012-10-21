@@ -29,10 +29,8 @@ When /^I follow "(.*?)"$/ do |link|
   click_link link
 end
 
-Then /^I should see "(.+)"$/ do |first_names|
-  first_names.split(", ").each do |first_name|
-    page.should have_content first_name
-  end
+Then /^I should( not)? see "(.+)"$/ do |negate, content|
+  negate ? page.should_not(have_content(content)) : page.should(have_content(content))
 end
 
 Then /^I should see the page for my newly created contact$/ do
