@@ -29,6 +29,12 @@ When /^I follow "(.*?)"$/ do |link|
   click_link link
 end
 
+When /^I edit (.+)'s phone number with "(.*?)"$/ do |first_name, phone_number|
+  visit edit_contact_path(Contact.find_by_first_name(first_name))
+  fill_in "contact_phone_number", with: phone_number
+  click_button "Update Contact"
+end
+
 Then /^I should( not)? see "(.+)"$/ do |negate, content|
   negate ? page.should_not(have_content(content)) : page.should(have_content(content))
 end
@@ -39,14 +45,4 @@ end
 
 Then /^I should see the (.+)'s contact page$/ do |first_name|
   visit contact_path(Contact.find_by_first_name(first_name))
-end
-
-When /^I go tho the (.+)'s contact page$/ do |first_name|
-  visit contact_path(Contact.find_by_first_name(first_name))
-end
-
-When /^I edit (.+)'s phone number with "(.*?)"$/ do |first_name, phone_number|
-  visit edit_contact_path(Contact.find_by_first_name(first_name))
-  fill_in "contact_phone_number", with: phone_number
-  click_button "Update Contact"
 end

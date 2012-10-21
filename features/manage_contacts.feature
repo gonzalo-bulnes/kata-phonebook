@@ -4,7 +4,8 @@ Feature: Manage Contacts
   I want to create and manage contacts
 
   Scenario: List Contacts
-    Given I have contacts named Alice and Bob
+    Given Alice is a contact
+    And Bob is a contact
     When I go to the list of contacts
     Then I should see "Alice"
     And I should see "Bob"
