@@ -23,14 +23,10 @@ Feature: Manage Contacts
     Then I should see the Alice's contact page
 
   Scenario: Edit Contact
-    Given I have one contact named Bob
-    And Bob last name is Hamilton
-    And I am on the list of contacts
-    When I follow "Edit Contact"
-    And I fill in "Last Name" with "Poe"
-    Then I should see "Contact updated."
-    And I should see "Poe"
-    And I should not see "Hamilton"
+    Given Bob is a contact
+    When I edit Bob's phone number with "+56987543210"
+    Then I should see "+56987543210"
+    And I should see "Contact was successfully updated."
 
   Scenario: Delete Contact
     Given I have one contact named Charles
