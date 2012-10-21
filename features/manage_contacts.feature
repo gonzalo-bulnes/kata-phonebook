@@ -10,20 +10,11 @@ Feature: Manage Contacts
     And I should see "Bob"
 
   Scenario: Create Contact
-    Given I have no contacts
-    And I am on the list of contacts
-    When I follow "New Contact"
-    And I fill in "Fist name" with "Alice"
-    And I fill in "Last name" with "Smith"
-    And I fill in "E-mail address" with "alice.smith@example.com"
-    And I fill in "Phone number" with "+5621234567"
-    And I press "Create"
-    Then I should see "New contact created."
-    And I should see "Alice"
-    And I should see "Smith"
-    And I should see "alice.smith@example.com"
-    And I should see "+56 2 123 4567"
-    And I should have 1 contact
+    Given no contacts exist
+    And I go to the list of contacts
+    When I add a contact
+    Then I should see the page for my newly created contact
+    And I should see "Contact was successfully created."
 
   Scenario: View Contact
     Given I have one contact named Alice
