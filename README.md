@@ -17,6 +17,8 @@ I use [RVM][RVM] to keep _kata_ environments separated from each others. In my o
     # Keep the file ignored by version control
     echo ".rvmrc" >> .gitignore
 
+  [RVM]: https://rvm.io/
+
 ### Rails
 
 Provided you install Rails from the `kata-phonebook` directory, it will be added to your _gemset_ without messing your system Ruby installation.
@@ -226,3 +228,23 @@ The generated `Guardfile` is just fine to ensure RSpec and Cucumber will use the
 
     # It should not be necessary to pass the `--drb` option to RSpec and Cucumber here
     # since it is already passed through `.rspec` and `config/cucumber.yaml`.
+
+Getting Started!
+----------------
+
+### Repository Conventions
+
+In order to keep the _kata_ readable, I find the following rules helpful.
+
+#### Features Branches
+
+A new branch should be created for each new feature, and it should deliver only one feature.
+Changes should be committed each time a scenario becomes green, or each time something has been successfully refactored.
+
+Once refactored, the branch should be merged back using `git merge --no-ff feature-manage-contacts` in order to keep them visible with `git log --graph`.
+
+#### Refactoring
+
+Refactoring should always be performed in the green and committed separately.
+
+That's all folks!
