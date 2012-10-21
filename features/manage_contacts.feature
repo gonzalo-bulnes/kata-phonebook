@@ -17,16 +17,10 @@ Feature: Manage Contacts
     And I should see "Contact was successfully created."
 
   Scenario: View Contact
-    Given I have one contact named Alice
-    And Alice last name is Smith
-    And Alice email address is alice.smith@example.com
-    And Alice phone number is "+5621234567"
-    And I am on the list of contacts
-    When I follow "View Contact"
-    Then I should see "Alice"
-    And I should see "Smith"
-    And I should see "alice.smith@example.com"
-    And I should see "+56 2 123 4567"
+    Given Alice is a contact
+    When I go to the list of contacts
+    And I follow "Show"
+    Then I should see the Alice's contact page
 
   Scenario: Edit Contact
     Given I have one contact named Bob

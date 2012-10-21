@@ -2,6 +2,10 @@ Given /^no contacts exist$/ do
   # nop
 end
 
+Given /^(.+) is a contact$/ do |first_name|
+  Contact.create!(first_name: first_name)
+end
+
 Given /^I have contacts named (.+)$/ do |first_names|
   first_names.split(", ").each do |first_name|
       Contact.create!(first_name: first_name)
@@ -21,6 +25,10 @@ When /^I add a contact$/ do
   click_button "Create Contact"
 end
 
+When /^I follow "(.*?)"$/ do |link|
+  click_link link
+end
+
 Then /^I should see "(.+)"$/ do |first_names|
   first_names.split(", ").each do |first_name|
     page.should have_content first_name
@@ -29,4 +37,8 @@ end
 
 Then /^I should see the page for my newly created contact$/ do
   current_path.should == contact_path(Contact.last.id)
+end
+
+Then /^I should see the (.+)'s contact page$/ do |first_name|
+  visit contact_path(Contact.find_by_first_name(first_name))
 end
