@@ -17,6 +17,7 @@ group :test do
   gem 'capybara'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'guard-cucumber'
   gem 'guard-spork'
   gem 'spork'
 
