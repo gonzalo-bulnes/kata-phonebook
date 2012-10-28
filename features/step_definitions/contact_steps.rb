@@ -2,6 +2,10 @@ Given /^no contacts exist$/ do
   # nop
 end
 
+Given /^I have a contact$/ do
+  @contact = FactoryGirl.create(:contact)
+end
+
 Given /^(.+) is a contact$/ do |first_name|
   Contact.create!(first_name: first_name)
 end
@@ -12,8 +16,16 @@ Given /^I have contacts named (.+)$/ do |first_names|
   end
 end
 
+Given /^I am on the contact page$/ do
+  visit contact_path(@contact)
+end
+
 When /^I go to the list of contacts$/ do
   visit contacts_path
+end
+
+When /^I go to the contact page$/ do
+  visit contact_path(@contact)
 end
 
 When /^I add a contact$/ do
@@ -45,4 +57,8 @@ end
 
 Then /^I should see the (.+)'s contact page$/ do |first_name|
   visit contact_path(Contact.find_by_first_name(first_name))
+end
+
+Then /^I should be redirected to the contact page$/ do
+  current_path.should == contact_path(@contact)
 end
