@@ -17,5 +17,9 @@ describe "Contacts" do
     it "should display the default contact picture" do
       page.should have_selector('img[src="/assets/rails.png"]')
     end
+
+    it "should have a 'Change Picture' link" do
+      page.should have_link('Change Picture', {href: edit_contact_picture_path(contact)})
+    end
   end
 end

@@ -1,6 +1,7 @@
 Given /^I have a contact with a custom picture$/ do
   step "I have a contact"
-  @contact.picture = FactoryGirl.create(:picture, src: "/assets/custom.png")
+  pending
+  #@contact.picture = FactoryGirl.create(:picture, src: "/assets/custom.png")
 end
 
 Given /^the contact has a gravatar$/ do
@@ -8,7 +9,9 @@ Given /^the contact has a gravatar$/ do
 end
 
 When /^I change the contact picture$/ do
-  pending
+  click_link "Change Picture"
+  fill_in "image", with: "/assets/new.png"
+  click_button "Upload Picture"
 end
 
 When /^I go to the edit contact picture page$/ do

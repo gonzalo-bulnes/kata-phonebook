@@ -1,6 +1,10 @@
 KataPhonebook::Application.routes.draw do
 
-  resources :contacts
+  get "pictures/edit"
+
+  resources :contacts do
+    resource :picture
+  end
 
   root to: 'contacts#index'
 

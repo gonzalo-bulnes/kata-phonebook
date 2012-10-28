@@ -7,6 +7,5 @@ FactoryGirl.define do
   end
 
   factory :picture do
-    src "/images/rails.png"
   end
 end
