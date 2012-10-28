@@ -1,11 +1,21 @@
 require 'spec_helper'
 
 describe "Contacts" do
-  describe "GET /contacts" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
+
+  let!(:contact) { FactoryGirl.create(:contact) }
+
+  describe "list page" do
+
+    it "should works" do
       get contacts_path
       response.status.should be(200)
+    end
+  end
+  describe "show page" do
+    before { visit contact_path(contact) }
+
+    it "should display the default contact picture" do
+      page.should have_selector('img[src="/assets/rails.png"]')
     end
   end
 end

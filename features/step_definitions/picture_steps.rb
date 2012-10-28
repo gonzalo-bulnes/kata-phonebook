@@ -1,6 +1,6 @@
 Given /^I have a contact with a custom picture$/ do
   step "I have a contact"
-  @contact.picture = FactoryGirl.create(:picture, src: "/images/custom.png")
+  @contact.picture = FactoryGirl.create(:picture, src: "/assets/custom.png")
 end
 
 Given /^the contact has a gravatar$/ do
@@ -20,11 +20,11 @@ When /^I remove the picture$/ do
 end
 
 Then /^I should see the default picture$/ do
-  page.should have_selector('img[src="/images/rails.png"]')
+  page.should have_selector('img[src="/assets/rails.png"]')
 end
 
 Then /^I should see the new picture$/ do
-  page.should have_selector('img[src="/images/new.png"]')
+  page.should have_selector('img[src="/assets/new.png"]')
 end
 
 Then /^I should not see a link to remove the picture$/ do
